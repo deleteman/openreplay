@@ -719,3 +719,20 @@ export function Zustand(
   ]
 }
 
+export function JQueryGET(
+  method: string,
+  url: string,
+  response: string,
+  status: string,
+  duration: string,
+): Messages.JQueryGET {
+  return [
+    Messages.Type.JQueryGET,
+    method,
+    url,
+    response,
+    status,
+    duration,
+  ]
+}
+

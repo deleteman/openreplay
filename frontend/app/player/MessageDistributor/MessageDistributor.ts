@@ -415,6 +415,15 @@ export default class MessageDistributor extends StatedScreen {
           index,
         }));
         break;
+      case 'j_query_get': 
+        listAppend("jquery", Resource({
+          method: msg.method,
+          url: msg.url,
+          response: msg.response,
+          status: msg.status,
+          duration: msg.duration
+        }))
+      break;
       case "fetch":
         listAppend("fetch", Resource({
           method: msg.method,

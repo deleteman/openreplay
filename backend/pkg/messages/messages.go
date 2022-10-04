@@ -158,6 +158,8 @@ const (
 
 	MsgZustand = 79
 
+	MsgJQueryGET = 112
+
 	MsgIOSBatchMeta = 107
 
 	MsgIOSSessionStart = 90
@@ -3072,6 +3074,46 @@ func (msg *Zustand) Decode() Message {
 
 func (msg *Zustand) TypeID() int {
 	return 79
+}
+
+type JQueryGET struct {
+	message
+	Method   string
+	url      string
+	response string
+	status   string
+	duration string
+}
+
+func (msg *JQueryGET) Encode() []byte {
+	buf := make([]byte, 51+len(msg.Method)+len(msg.url)+len(msg.response)+len(msg.status)+len(msg.duration))
+	buf[0] = 112
+	p := 1
+	p = WriteString(msg.Method, buf, p)
+	p = WriteString(msg.url, buf, p)
+	p = WriteString(msg.response, buf, p)
+	p = WriteString(msg.status, buf, p)
+	p = WriteString(msg.duration, buf, p)
+	return buf[:p]
+}
+
+func (msg *JQueryGET) EncodeWithIndex() []byte {
+	encoded := msg.Encode()
+	if IsIOSType(msg.TypeID()) {
+		return encoded
+	}
+	data := make([]byte, len(encoded)+8)
+	copy(data[8:], encoded[:])
+	binary.LittleEndian.PutUint64(data[0:], msg.Meta().Index)
+	return data
+}
+
+func (msg *JQueryGET) Decode() Message {
+	return msg
+}
+
+func (msg *JQueryGET) TypeID() int {
+	return 112
 }
 
 type IOSBatchMeta struct {

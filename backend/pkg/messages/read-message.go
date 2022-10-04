@@ -1318,6 +1318,27 @@ func DecodeZustand(reader io.Reader) (Message, error) {
 	return msg, err
 }
 
+func DecodeJQueryGET(reader io.Reader) (Message, error) {
+	var err error = nil
+	msg := &JQueryGET{}
+	if msg.Method, err = ReadString(reader); err != nil {
+		return nil, err
+	}
+	if msg.url, err = ReadString(reader); err != nil {
+		return nil, err
+	}
+	if msg.response, err = ReadString(reader); err != nil {
+		return nil, err
+	}
+	if msg.status, err = ReadString(reader); err != nil {
+		return nil, err
+	}
+	if msg.duration, err = ReadString(reader); err != nil {
+		return nil, err
+	}
+	return msg, err
+}
+
 func DecodeIOSBatchMeta(reader io.Reader) (Message, error) {
 	var err error = nil
 	msg := &IOSBatchMeta{}
@@ -1953,6 +1974,9 @@ func ReadMessage(t uint64, reader io.Reader) (Message, error) {
 
 	case 79:
 		return DecodeZustand(reader)
+
+	case 112:
+		return DecodeJQueryGET(reader)
 
 	case 107:
 		return DecodeIOSBatchMeta(reader)

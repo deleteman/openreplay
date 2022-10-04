@@ -49,6 +49,7 @@ import type {
   RawAdoptedSsAddOwner,
   RawAdoptedSsRemoveOwner,
   RawZustand,
+  RawJQueryGet,
   RawIosSessionStart,
   RawIosCustomEvent,
   RawIosScreenChanges,
@@ -150,6 +151,8 @@ export type AdoptedSsAddOwner = RawAdoptedSsAddOwner & Timed
 export type AdoptedSsRemoveOwner = RawAdoptedSsRemoveOwner & Timed
 
 export type Zustand = RawZustand & Timed
+
+export type JQueryGet = RawJQueryGet & Timed
 
 export type IosSessionStart = RawIosSessionStart & Timed
 

@@ -470,3 +470,11 @@ message 79, 'Zustand' do
 end
 
 # 80 -- 90 reserved
+message 112, 'JQueryGET' do
+  string 'Method'
+  string 'url'
+  string 'response'
+  string 'status'
+  string 'duration'
+end
+

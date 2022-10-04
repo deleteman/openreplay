@@ -389,8 +389,17 @@ type TrZustand = [
   state: string,
 ]
 
+type TrJQueryGET = [
+  type: 112,
+  method: string,
+  url: string,
+  response: string,
+  status: string,
+  duration: string,
+]
 
-export type TrackerMessage = TrBatchMetadata | TrPartitionedMessage | TrTimestamp | TrSetPageLocation | TrSetViewportSize | TrSetViewportScroll | TrCreateDocument | TrCreateElementNode | TrCreateTextNode | TrMoveNode | TrRemoveNode | TrSetNodeAttribute | TrRemoveNodeAttribute | TrSetNodeData | TrSetNodeScroll | TrSetInputTarget | TrSetInputValue | TrSetInputChecked | TrMouseMove | TrConsoleLog | TrPageLoadTiming | TrPageRenderTiming | TrJSException | TrRawCustomEvent | TrUserID | TrUserAnonymousID | TrMetadata | TrCSSInsertRule | TrCSSDeleteRule | TrFetch | TrProfiler | TrOTable | TrStateAction | TrRedux | TrVuex | TrMobX | TrNgRx | TrGraphQL | TrPerformanceTrack | TrResourceTiming | TrConnectionInformation | TrSetPageVisibility | TrLongTask | TrSetNodeAttributeURLBased | TrSetCSSDataURLBased | TrTechnicalInfo | TrCustomIssue | TrCSSInsertRuleURLBased | TrMouseClick | TrCreateIFrameDocument | TrAdoptedSSReplaceURLBased | TrAdoptedSSInsertRuleURLBased | TrAdoptedSSDeleteRule | TrAdoptedSSAddOwner | TrAdoptedSSRemoveOwner | TrZustand
+
+export type TrackerMessage = TrBatchMetadata | TrPartitionedMessage | TrTimestamp | TrSetPageLocation | TrSetViewportSize | TrSetViewportScroll | TrCreateDocument | TrCreateElementNode | TrCreateTextNode | TrMoveNode | TrRemoveNode | TrSetNodeAttribute | TrRemoveNodeAttribute | TrSetNodeData | TrSetNodeScroll | TrSetInputTarget | TrSetInputValue | TrSetInputChecked | TrMouseMove | TrConsoleLog | TrPageLoadTiming | TrPageRenderTiming | TrJSException | TrRawCustomEvent | TrUserID | TrUserAnonymousID | TrMetadata | TrCSSInsertRule | TrCSSDeleteRule | TrFetch | TrProfiler | TrOTable | TrStateAction | TrRedux | TrVuex | TrMobX | TrNgRx | TrGraphQL | TrPerformanceTrack | TrResourceTiming | TrConnectionInformation | TrSetPageVisibility | TrLongTask | TrSetNodeAttributeURLBased | TrSetCSSDataURLBased | TrTechnicalInfo | TrCustomIssue | TrCSSInsertRuleURLBased | TrMouseClick | TrCreateIFrameDocument | TrAdoptedSSReplaceURLBased | TrAdoptedSSInsertRuleURLBased | TrAdoptedSSDeleteRule | TrAdoptedSSAddOwner | TrAdoptedSSRemoveOwner | TrZustand | TrJQueryGET
 
 export default function translate(tMsg: TrackerMessage): RawMessage | null {
   switch(tMsg[0]) {
@@ -762,6 +771,17 @@ export default function translate(tMsg: TrackerMessage): RawMessage | null {
         tp: "zustand",
         mutation: tMsg[1],
         state: tMsg[2],
+      }
+    }
+    
+    case 112: {
+      return {
+        tp: "j_query_get",
+        method: tMsg[1],
+        url: tMsg[2],
+        response: tMsg[3],
+        status: tMsg[4],
+        duration: tMsg[5],
       }
     }
     

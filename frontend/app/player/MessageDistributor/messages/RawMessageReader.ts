@@ -538,6 +538,22 @@ export default class RawMessageReader extends PrimitiveReader {
       };
     }
     
+    case 112: {
+      const method = this.readString(); if (method === null) { return resetPointer() }
+      const url = this.readString(); if (url === null) { return resetPointer() }
+      const response = this.readString(); if (response === null) { return resetPointer() }
+      const status = this.readString(); if (status === null) { return resetPointer() }
+      const duration = this.readString(); if (duration === null) { return resetPointer() }
+      return {
+        tp: "j_query_get",
+        method,
+        url,
+        response,
+        status,
+        duration,
+      };
+    }
+    
     case 90: {
       const timestamp = this.readUint(); if (timestamp === null) { return resetPointer() }
       const projectID = this.readUint(); if (projectID === null) { return resetPointer() }

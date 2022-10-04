@@ -668,6 +668,15 @@ class MessageCodec(Codec):
                 state=self.read_string(reader)
             )
 
+        if message_id == 112:
+            return JQueryGET(
+                method=self.read_string(reader),
+                url=self.read_string(reader),
+                response=self.read_string(reader),
+                status=self.read_string(reader),
+                duration=self.read_string(reader)
+            )
+
         if message_id == 107:
             return IOSBatchMeta(
                 timestamp=self.read_uint(reader),

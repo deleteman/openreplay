@@ -58,6 +58,7 @@ export declare const enum Type {
   AdoptedSSAddOwner = 76,
   AdoptedSSRemoveOwner = 77,
   Zustand = 79,
+  JQueryGET = 112,
 }
 
 
@@ -446,6 +447,15 @@ export type Zustand = [
   /*state:*/ string,
 ]
 
+export type JQueryGET = [
+  /*type:*/ Type.JQueryGET,
+  /*method:*/ string,
+  /*url:*/ string,
+  /*response:*/ string,
+  /*status:*/ string,
+  /*duration:*/ string,
+]
 
-type Message =  BatchMetadata | PartitionedMessage | Timestamp | SetPageLocation | SetViewportSize | SetViewportScroll | CreateDocument | CreateElementNode | CreateTextNode | MoveNode | RemoveNode | SetNodeAttribute | RemoveNodeAttribute | SetNodeData | SetNodeScroll | SetInputTarget | SetInputValue | SetInputChecked | MouseMove | ConsoleLog | PageLoadTiming | PageRenderTiming | JSException | RawCustomEvent | UserID | UserAnonymousID | Metadata | CSSInsertRule | CSSDeleteRule | Fetch | Profiler | OTable | StateAction | Redux | Vuex | MobX | NgRx | GraphQL | PerformanceTrack | ResourceTiming | ConnectionInformation | SetPageVisibility | LongTask | SetNodeAttributeURLBased | SetCSSDataURLBased | TechnicalInfo | CustomIssue | CSSInsertRuleURLBased | MouseClick | CreateIFrameDocument | AdoptedSSReplaceURLBased | AdoptedSSInsertRuleURLBased | AdoptedSSDeleteRule | AdoptedSSAddOwner | AdoptedSSRemoveOwner | Zustand
+
+type Message =  BatchMetadata | PartitionedMessage | Timestamp | SetPageLocation | SetViewportSize | SetViewportScroll | CreateDocument | CreateElementNode | CreateTextNode | MoveNode | RemoveNode | SetNodeAttribute | RemoveNodeAttribute | SetNodeData | SetNodeScroll | SetInputTarget | SetInputValue | SetInputChecked | MouseMove | ConsoleLog | PageLoadTiming | PageRenderTiming | JSException | RawCustomEvent | UserID | UserAnonymousID | Metadata | CSSInsertRule | CSSDeleteRule | Fetch | Profiler | OTable | StateAction | Redux | Vuex | MobX | NgRx | GraphQL | PerformanceTrack | ResourceTiming | ConnectionInformation | SetPageVisibility | LongTask | SetNodeAttributeURLBased | SetCSSDataURLBased | TechnicalInfo | CustomIssue | CSSInsertRuleURLBased | MouseClick | CreateIFrameDocument | AdoptedSSReplaceURLBased | AdoptedSSInsertRuleURLBased | AdoptedSSDeleteRule | AdoptedSSAddOwner | AdoptedSSRemoveOwner | Zustand | JQueryGET
 export default Message
