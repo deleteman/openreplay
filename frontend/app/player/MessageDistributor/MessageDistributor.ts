@@ -421,6 +421,7 @@ export default class MessageDistributor extends StatedScreen {
           url: msg.url,
           response: msg.response,
           status: msg.status,
+          type: TYPES.FETCH,
           duration: msg.duration
         }))
       break;
