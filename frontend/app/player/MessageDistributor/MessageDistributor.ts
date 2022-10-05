@@ -416,6 +416,7 @@ export default class MessageDistributor extends StatedScreen {
         }));
         break;
       case 'j_query_get': 
+        console.log("JQUERYGET received!")
         listAppend("jquery", Resource({
           method: msg.method,
           url: msg.url,
