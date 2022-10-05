@@ -404,6 +404,7 @@ export default class MessageDistributor extends StatedScreen {
     //const index = i + index; //?
     let decoded;
     const time = msg.time;
+    console.log("Message recived: ", msg)
     switch (msg.tp) {
       /* Lists: */
       case "console_log":
