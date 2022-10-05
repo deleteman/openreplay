@@ -8,7 +8,7 @@ const c = n => `${ n }Count`;
 const ln = n => `${ n }ListNow`;
 const rcn = n => `${ n }RedCountNow`;
 
-const entityNamesWithRed = [ "log", "resource", "fetch", "stack" ];
+const entityNamesWithRed = [ "log", "resource", "fetch", "jquery", "stack" ];
 const entityNamesSimple = [ "event", "profile" ];
 const entityNames = /*[ "redux" ].*/entityNamesWithRed.concat(entityNamesSimple);
 
