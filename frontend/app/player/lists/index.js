@@ -26,8 +26,10 @@ entityNames.forEach(n => {
 
 
 const createCallback = n => {
+	console.log("Creating callback for ", n)
 	const entityfy = s => `${ n }${ s[ 0 ].toUpperCase() }${ s.slice(1) }`;
 	return state => {
+		console.log("Callback for ", n ," called with state: ", state)
 		if (!state) return;
 		const namedState = {};
 		Object.keys(state).forEach(key => {
