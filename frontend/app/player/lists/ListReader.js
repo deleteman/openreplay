@@ -79,6 +79,7 @@ export default class ListReader {
 
 	// happens rare MBTODO only in class ResourceListReader extends ListReaderWithRed
 	set startTime(time) {
+		console.log("calling startTime")
 		const prevOffset = this._offset;
 		const prevPointer = this._p;
 		this._offset = this._list.findIndex(({ time, duration = 0 }) => time + duration >= time); // TODO: strict for duration rrrrr
@@ -100,6 +101,7 @@ export default class ListReader {
 	}
 
 	set list(_list) {
+		console.log("calling set list")
 		if (!Array.isArray(_list)) {
 			console.error("List Reader: wrong list value.", _list)
 		}
@@ -110,12 +112,14 @@ export default class ListReader {
 	}
 
 	append(item) {
+		console.log("calling append")
 		if (!this.constructor.checkItem(item)) return;
 		this._list.push(item); // future: time + index sort
 		this._notify([ "count" ]); // list is the same by ref, CAREFULL
 	}
 
 	_notify(propertyList) {
+		console.log("calling _notify")
 		const changedState = {};
 		propertyList.forEach(p => changedState[ p ] = this[ p ]);
 		this._callback(changedState);

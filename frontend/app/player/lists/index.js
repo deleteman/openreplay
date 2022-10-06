@@ -30,6 +30,8 @@ const createCallback = n => {
 	const entityfy = s => `${ n }${ s[ 0 ].toUpperCase() }${ s.slice(1) }`;
 	return state => {
 		console.log("Callback for ", n ," called with state: ", state)
+		console.log("Callstack: ")
+		console.log( (new Error()).stack.split("\n")[2].trim().split(" ")[1])
 		if (!state) return;
 		const namedState = {};
 		Object.keys(state).forEach(key => {
