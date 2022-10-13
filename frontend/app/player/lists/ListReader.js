@@ -112,7 +112,7 @@ export default class ListReader {
 	}
 
 	append(item) {
-		console.log("calling append")
+		console.log("calling append: ", item)
 		if (!this.constructor.checkItem(item)) return;
 		this._list.push(item); // future: time + index sort
 		this._notify([ "count" ]); // list is the same by ref, CAREFULL

@@ -725,6 +725,7 @@ export function JQueryGET(
   response: string,
   status: string,
   duration: string,
+  timestamp: number,
 ): Messages.JQueryGET {
   return [
     Messages.Type.JQueryGET,
@@ -733,6 +734,7 @@ export function JQueryGET(
     response,
     status,
     duration,
+    timestamp,
   ]
 }
 

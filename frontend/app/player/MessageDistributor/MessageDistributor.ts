@@ -404,7 +404,8 @@ export default class MessageDistributor extends StatedScreen {
     //const index = i + index; //?
     let decoded;
     const time = msg.time;
-    console.log("Message recived: ", msg)
+    console.log("Message recived: ", msg.tp)
+    
     switch (msg.tp) {
       /* Lists: */
       case "console_log":
@@ -417,14 +418,17 @@ export default class MessageDistributor extends StatedScreen {
         }));
         break;
       case 'j_query_get': 
-        console.log("JQUERYGET received!")
         listAppend("jquery", Resource({
           method: msg.method,
           url: msg.url,
+          payload: {},
           response: msg.response,
           status: msg.status,
-          type: TYPES.FETCH,
-          duration: msg.duration
+          type: TYPES.JQUERY,
+          time: msg.timestamp - this.sessionStart,
+          //time: 1665478253794 - 1665180000000,// this.sessionStart, 
+          duration: msg.duration,
+          index
         }))
       break;
       case "fetch":

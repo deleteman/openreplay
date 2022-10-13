@@ -3078,15 +3078,16 @@ func (msg *Zustand) TypeID() int {
 
 type JQueryGET struct {
 	message
-	Method   string
-	url      string
-	response string
-	status   string
-	duration string
+	Method    string
+	url       string
+	response  string
+	status    string
+	duration  string
+	timestamp int64
 }
 
 func (msg *JQueryGET) Encode() []byte {
-	buf := make([]byte, 51+len(msg.Method)+len(msg.url)+len(msg.response)+len(msg.status)+len(msg.duration))
+	buf := make([]byte, 61+len(msg.Method)+len(msg.url)+len(msg.response)+len(msg.status)+len(msg.duration))
 	buf[0] = 112
 	p := 1
 	p = WriteString(msg.Method, buf, p)
@@ -3094,6 +3095,7 @@ func (msg *JQueryGET) Encode() []byte {
 	p = WriteString(msg.response, buf, p)
 	p = WriteString(msg.status, buf, p)
 	p = WriteString(msg.duration, buf, p)
+	p = WriteInt(msg.timestamp, buf, p)
 	return buf[:p]
 }
 

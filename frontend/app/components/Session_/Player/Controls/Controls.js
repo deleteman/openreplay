@@ -26,6 +26,7 @@ import {
   PERFORMANCE,
   GRAPHQL,
   FETCH,
+  JQUERY,
   EXCEPTIONS,
   INSPECTOR,
 } from 'Duck/components/player';
@@ -99,6 +100,7 @@ function getStorageName(type) {
   logRedCount: state.logRedCountNow,
   resourceRedCount: state.resourceRedCountNow,
   fetchRedCount: state.fetchRedCountNow,
+  jqueryRedCount: state.jqueryRedCountNow,
   showStack: state.stackList.length > 0,
   stackCount: state.stackListNow.length,
   stackRedCount: state.stackRedCountNow,
@@ -108,7 +110,9 @@ function getStorageName(type) {
   showStorage: selectStorageType(state) !== STORAGE_TYPES.NONE,
   showProfiler: state.profilesList.length > 0,
   showGraphql: state.graphqlList.length > 0,
+  showJQuery: state.jqueryCount > 0,
   showFetch: state.fetchCount > 0,
+  jqueryCount: state.jqueryCountNow,
   fetchCount: state.fetchCountNow,
   graphqlCount: state.graphqlListNow.length,
   exceptionsCount: state.exceptionsListNow.length,
@@ -167,6 +171,7 @@ export default class Controls extends React.Component {
       nextProps.logRedCount !== this.props.logRedCount ||
       nextProps.resourceRedCount !== this.props.resourceRedCount ||
       nextProps.fetchRedCount !== this.props.fetchRedCount ||
+      nextProps.jqueryRedCount !== this.props.jqueryRedCount ||
       nextProps.showStack !== this.props.showStack ||
       nextProps.stackCount !== this.props.stackCount ||
       nextProps.stackRedCount !== this.props.stackRedCount ||
@@ -177,6 +182,7 @@ export default class Controls extends React.Component {
       nextProps.showProfiler !== this.props.showProfiler ||
       nextProps.showGraphql !== this.props.showGraphql ||
       nextProps.showFetch !== this.props.showFetch ||
+      nextProps.showjQuery!== this.props.showFetch ||
       nextProps.fetchCount !== this.props.fetchCount ||
       nextProps.graphqlCount !== this.props.graphqlCount ||
       nextProps.showExceptions !== this.props.showExceptions ||
@@ -290,6 +296,7 @@ export default class Controls extends React.Component {
       logRedCount,
       resourceRedCount,
       fetchRedCount,
+      jqueryRedCount,
       showStack,
       stackCount,
       stackRedCount,
@@ -300,7 +307,9 @@ export default class Controls extends React.Component {
       showProfiler,
       showGraphql,
       showFetch,
+      showJQuery,
       fetchCount,
+      jqueryCount,
       graphqlCount,
       exceptionsCount,
       showExceptions,
@@ -402,6 +411,19 @@ export default class Controls extends React.Component {
                   onClick={() => toggleBottomTools(PERFORMANCE)}
                   active={bottomBlock === PERFORMANCE && !inspectorMode}
                   label="PERFORMANCE"
+                  noIcon
+                  labelClassName="!text-base font-semibold"
+                  containerClassName="mx-2"
+                />
+              )}
+              {showJQuery && (
+                <ControlButton
+                  disabled={disabled && !inspectorMode}
+                  onClick={() => toggleBottomTools(JQUERY)}
+                  active={bottomBlock === JQUERY && !inspectorMode}
+                  hasErrors={jqueryRedCount > 0}
+                  count={jqueryCount}
+                  label="JQUERY"
                   noIcon
                   labelClassName="!text-base font-semibold"
                   containerClassName="mx-2"

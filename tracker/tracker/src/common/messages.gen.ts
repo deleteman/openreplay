@@ -454,6 +454,7 @@ export type JQueryGET = [
   /*response:*/ string,
   /*status:*/ string,
   /*duration:*/ string,
+  /*timestamp:*/ number,
 ]
 
 

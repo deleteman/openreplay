@@ -13,6 +13,7 @@ export const EXCEPTIONS = 9;
 export const LONGTASKS = 10;
 export const INSPECTOR = 11;
 export const OVERVIEW = 12;
+export const JQUERY = 13;
 
 const TOGGLE_FULLSCREEN = 'player/TOGGLE_FS';
 const TOGGLE_BOTTOM_BLOCK = 'player/SET_BOTTOM_BLOCK';

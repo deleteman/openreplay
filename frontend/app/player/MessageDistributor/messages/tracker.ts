@@ -396,6 +396,7 @@ type TrJQueryGET = [
   response: string,
   status: string,
   duration: string,
+  timestamp: number,
 ]
 
 
@@ -782,6 +783,7 @@ export default function translate(tMsg: TrackerMessage): RawMessage | null {
         response: tMsg[3],
         status: tMsg[4],
         duration: tMsg[5],
+        timestamp: tMsg[6],
       }
     }
     

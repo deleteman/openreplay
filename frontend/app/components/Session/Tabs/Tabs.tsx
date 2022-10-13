@@ -10,7 +10,9 @@ interface Props {
     className?: string;
 }
 
-const Tabs = ({ tabs, active, onClick, border = true, className }: Props) => (
+const Tabs = ({ tabs, active, onClick, border = true, className }: Props) => {
+  console.log(tabs) 
+  return (
   <div className={  cn(stl.tabs, className, { [ stl.bordered ]: border }) } role="tablist" >
     { tabs.map(({ key, text, hidden = false, disabled = false }) => (
       <div
@@ -25,7 +27,8 @@ const Tabs = ({ tabs, active, onClick, border = true, className }: Props) => (
       </div>
     ))}
   </div>
-);
+)
+    }
 
 Tabs.displayName = 'Tabs';
 

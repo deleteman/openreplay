@@ -10,6 +10,7 @@ const MEDIA = 'media';
 const OTHER = 'other';
 //
 const FETCH = 'tracked_fetch';
+const JQUERY = 'tracked_jquery';
 // 
 // const IMG_EXTENTIONS = [ "png", "gif", "jpg", "jpeg", "svg" ];
 // const MEDIA_EXTENTIONS = [ 'mp4', 'mkv', 'ogg', 'webm', 'avi', 'mp3' ];
@@ -59,6 +60,7 @@ export const TYPES = {
   MEDIA,
   OTHER,
   FETCH,
+  JQUERY
 }
 
 const YELLOW_BOUND = 10;

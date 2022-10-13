@@ -755,12 +755,13 @@ class Zustand(Message):
 class JQueryGET(Message):
     __id__ = 112
 
-    def __init__(self, method, url, response, status, duration):
+    def __init__(self, method, url, response, status, duration, timestamp):
         self.method = method
         self.url = url
         self.response = response
         self.status = status
         self.duration = duration
+        self.timestamp = timestamp
 
 
 class IOSBatchMeta(Message):

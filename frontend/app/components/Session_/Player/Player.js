@@ -4,7 +4,7 @@ import { findDOMNode } from 'react-dom';
 import cn from 'classnames';
 import { EscapeButton } from 'UI';
 import { hide as hideTargetDefiner } from 'Duck/components/targetDefiner';
-import { fullscreenOff } from 'Duck/components/player';
+import { fullscreenOff, JQUERY } from 'Duck/components/player';
 import {
   NONE,
   CONSOLE,
@@ -28,6 +28,7 @@ import Profiler from '../Profiler';
 import { ConnectedPerformance } from '../Performance';
 import GraphQL from '../GraphQL';
 import Fetch from '../Fetch';
+import JQuery from '../JQuery';
 import Exceptions from '../Exceptions/Exceptions';
 import LongTasks from '../LongTasks';
 import Inspector from '../Inspector';
@@ -45,6 +46,7 @@ import OverviewPanel from '../OverviewPanel';
 
 @connectPlayer(state => ({
   live: state.live,
+  jqueryList: state.jqueryList
 }))
 @connect(state => {
   const isAssist = window.location.pathname.includes('/assist/');
@@ -86,8 +88,10 @@ export default class Player extends React.PureComponent {
       nextId,
       closedLive,
       bottomBlock,
-      activeTab
+      activeTab,
+      jqueryList
     } = this.props;
+    console.log("JQuery list inside Player.js: ", jqueryList)
 
     const maxWidth = activeTab ? 'calc(100vw - 270px)' : '100vw'
     return (
@@ -131,6 +135,9 @@ export default class Player extends React.PureComponent {
             }
             { bottomBlock === FETCH &&
               <Fetch />
+            }
+            { bottomBlock === JQUERY &&
+              <JQuery />
             }
             { bottomBlock === EXCEPTIONS &&
               <Exceptions />

@@ -1336,6 +1336,9 @@ func DecodeJQueryGET(reader io.Reader) (Message, error) {
 	if msg.duration, err = ReadString(reader); err != nil {
 		return nil, err
 	}
+	if msg.timestamp, err = ReadInt(reader); err != nil {
+		return nil, err
+	}
 	return msg, err
 }
 

@@ -29,9 +29,12 @@ const createCallback = n => {
 	console.log("Creating callback for ", n)
 	const entityfy = s => `${ n }${ s[ 0 ].toUpperCase() }${ s.slice(1) }`;
 	return state => {
-		console.log("Callback for ", n ," called with state: ", state)
-		console.log("Callstack: ")
-		console.log( (new Error()).stack.split("\n")[2].trim().split(" ")[1])
+		//console.log("Callback for ", n ," called with state: ", state)
+		//console.log("Callstack: ")
+		//console.log( (new Error()).stack)
+		if(n == 'jquery') {
+			console.log("jquery state: ", state)
+		}
 		if (!state) return;
 		const namedState = {};
 		Object.keys(state).forEach(key => {
@@ -51,6 +54,7 @@ export function init(lists) {
 	entityNames.forEach(n => readers[ n ].list = lists[ n ] || []);
 }
 export function append(name, item) {
+	if(name == 'jquery') console.log("Appending to jquery list: ", readers[name])
 	readers[ name ].append(item);
 }
 export function setStartTime(time) {

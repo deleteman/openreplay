@@ -544,6 +544,7 @@ export default class RawMessageReader extends PrimitiveReader {
       const response = this.readString(); if (response === null) { return resetPointer() }
       const status = this.readString(); if (status === null) { return resetPointer() }
       const duration = this.readString(); if (duration === null) { return resetPointer() }
+      const timestamp = this.readInt(); if (timestamp === null) { return resetPointer() }
       return {
         tp: "j_query_get",
         method,
@@ -551,6 +552,7 @@ export default class RawMessageReader extends PrimitiveReader {
         response,
         status,
         duration,
+        timestamp,
       };
     }
     

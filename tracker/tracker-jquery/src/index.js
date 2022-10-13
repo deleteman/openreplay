@@ -11,7 +11,7 @@ export default function($) {
 
             const startTime = performance.now();
             let resp = await fetch(settingsObj.url, {
-                mode: 'no-cors'
+                method: 'GET'
             })
             const duration = performance.now() - startTime;
 
@@ -35,15 +35,17 @@ export default function($) {
                 return JSON.stringify(r)
             }
 
-            app.send(
-                Messages.JQueryGET(
+            const msg = Messages.JQueryGET(
                     'GET',
                     String(settingsObj.url),
                     getStj(resp),
                     resp.status,
                     duration,
+                    (new Date()).getTime()
                 )
-            )   
+            console.log("Sending a message to the tracker....", msg)
+
+            app.send(msg, true)   
             return valueResp;
 
         }

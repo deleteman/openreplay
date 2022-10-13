@@ -674,7 +674,8 @@ class MessageCodec(Codec):
                 url=self.read_string(reader),
                 response=self.read_string(reader),
                 status=self.read_string(reader),
-                duration=self.read_string(reader)
+                duration=self.read_string(reader),
+                timestamp=self.read_int(reader)
             )
 
         if message_id == 107:

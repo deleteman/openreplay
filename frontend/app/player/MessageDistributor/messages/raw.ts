@@ -314,6 +314,7 @@ export interface RawJQueryGet {
   response: string,
   status: string,
   duration: string,
+  timestamp: number,
 }
 
 export interface RawIosSessionStart {

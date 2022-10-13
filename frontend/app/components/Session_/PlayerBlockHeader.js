@@ -159,7 +159,7 @@ export default class PlayerBlockHeader extends React.PureComponent {
                                     !showEvents && toggleEvents(true);
                                 }
                             }}
-                            border={false}
+                            border={true}
                         />
                     </div>
                 )}

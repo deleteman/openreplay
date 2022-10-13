@@ -476,5 +476,6 @@ message 112, 'JQueryGET' do
   string 'response'
   string 'status'
   string 'duration'
+  int  'timestamp'
 end
 
