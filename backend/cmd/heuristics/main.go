@@ -16,6 +16,8 @@ import (
 	"openreplay/backend/pkg/messages"
 	"openreplay/backend/pkg/queue"
 	"openreplay/backend/pkg/sessions"
+	custom "openreplay/backend/pkg/custom"
+
 )
 
 func main() {
@@ -34,8 +36,8 @@ func main() {
 			&web2.MemoryIssueDetector{},
 			&web2.NetworkIssueDetector{},
 			&web2.PerformanceAggregator{},
-			// Other handlers (you can add your custom handlers here)
-			//&custom.CustomHandler{},
+			// The new handler
+			&custom.QuickReturnDetector{},
 		}
 	}
 
