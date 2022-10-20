@@ -22,9 +22,9 @@ func (h *QuickReturnDetector) HandleSetPageLocation(msg, messageID, timestamp) M
 // detect when a button is clicked (selector must have string 'botton' in it)
 func (h *QuickReturnDetector) HandleMouseClick(msg, messageID, timestamp) {
     // update timestamp when botton is clicked ()
-    if strings.contains(msg.selector, 'button') {
+    //if strings.contains(msg.selector, 'button') {
         h.timestamp = timestamp
-    }
+    //}
     return nil
 }
 func (h *QuickReturnDetector) Handle(message Message, messageID uint64, timestamp uint64) Message {
