@@ -9,7 +9,7 @@ type QuickReturnDetector struct {
     lastPage    string
 }
 // If received SetPageLocation on same 
-func (h *QuickReturnDetector) HandleSetPageLocation(msg, messageID, timestamp) Message {
+func (h *QuickReturnDetector) HandleSetPageLocation(msg SetPageLocation, messageID uint64, timestamp uint64) Message {
     if (h.timestamp + 5000 >= timestamp && h.lastPage == msg.URL) {
         h.timestamp = msg.NavigationStart
         return h.Build()
@@ -20,7 +20,7 @@ func (h *QuickReturnDetector) HandleSetPageLocation(msg, messageID, timestamp) M
     return nil
 }
 // detect when a button is clicked (selector must have string 'button' in it)
-func (h *QuickReturnDetector) HandleMouseClick(msg, messageID, timestamp) {
+func (h *QuickReturnDetector) HandleMouseClick(msg MouseClick, messageID uint64, timestamp uint64) {
     h.timestamp = timestamp
     return nil
 }
