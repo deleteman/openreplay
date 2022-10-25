@@ -1,6 +1,5 @@
 package custom
 import (
-    "strings"
     . "openreplay/backend/pkg/messages"
 )
 type QuickReturnDetector struct {
@@ -9,7 +8,7 @@ type QuickReturnDetector struct {
     lastPage    string
 }
 // If received SetPageLocation on same 
-func (h *QuickReturnDetector) HandleSetPageLocation(msg SetPageLocation, messageID uint64, timestamp uint64) Message {
+func (h *QuickReturnDetector) HandleSetPageLocation(msg *SetPageLocation, messageID uint64, timestamp uint64) Message {
     if (h.timestamp + 5000 >= timestamp && h.lastPage == msg.URL) {
         h.timestamp = msg.NavigationStart
         return h.Build()
@@ -20,7 +19,7 @@ func (h *QuickReturnDetector) HandleSetPageLocation(msg SetPageLocation, message
     return nil
 }
 // detect when a button is clicked (selector must have string 'button' in it)
-func (h *QuickReturnDetector) HandleMouseClick(msg MouseClick, messageID uint64, timestamp uint64) {
+func (h *QuickReturnDetector) HandleMouseClick(msg *MouseClick, messageID uint64, timestamp uint64) {
     h.timestamp = timestamp
     return nil
 }
@@ -37,6 +36,7 @@ func (h *QuickReturnDetector) Handle(message Message, messageID uint64, timestam
 }
 func (h *QuickReturnDetector) Build() Message {
     event := &CustomEvent {
-        name:   'quickreturn',
+        Name:   'quickreturn',
         Payload:    h.currentPage,
     }
+    return event
