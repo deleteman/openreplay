@@ -39,3 +39,4 @@ func (h *QuickReturnDetector) Build() Message {
         Payload:    h.currentPage,
     }
     return event
+}
