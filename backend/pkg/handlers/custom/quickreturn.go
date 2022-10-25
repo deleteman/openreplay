@@ -21,7 +21,6 @@ func (h *QuickReturnDetector) HandleSetPageLocation(msg *SetPageLocation, messag
 // detect when a button is clicked (selector must have string 'button' in it)
 func (h *QuickReturnDetector) HandleMouseClick(msg *MouseClick, messageID uint64, timestamp uint64) {
     h.timestamp = timestamp
-    return nil
 }
 func (h *QuickReturnDetector) Handle(message Message, messageID uint64, timestamp uint64) Message {
     switch msg := message.(type) {
