@@ -35,7 +35,7 @@ func (h *QuickReturnDetector) Handle(message Message, messageID uint64, timestam
 }
 func (h *QuickReturnDetector) Build() Message {
     event := &CustomEvent {
-        Name:   'quickreturn',
+        Name:   "quickreturn",
         Payload:    h.currentPage,
     }
     return event
