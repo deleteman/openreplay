@@ -11,20 +11,17 @@ type QuickReturnDetector struct {
 // If received SetPageLocation on same 
 func (h *QuickReturnDetector) HandleSetPageLocation(msg, messageID, timestamp) Message {
     if (h.timestamp + 5000 >= timestamp && h.lastPage == msg.URL) {
-        h.timestamp = timestamp
+        h.timestamp = msg.NavigationStart
         return h.Build()
     }
     h.lastPage = h.currentPage
     h.currentPage = msg.URL
-    h.timestamp = timestamp
+    h.timestamp = msg.NavigationStart
     return nil
 }
-// detect when a button is clicked (selector must have string 'botton' in it)
+// detect when a button is clicked (selector must have string 'button' in it)
 func (h *QuickReturnDetector) HandleMouseClick(msg, messageID, timestamp) {
-    // update timestamp when botton is clicked ()
-    //if strings.contains(msg.selector, 'button') {
-        h.timestamp = timestamp
-    //}
+    h.timestamp = timestamp
     return nil
 }
 func (h *QuickReturnDetector) Handle(message Message, messageID uint64, timestamp uint64) Message {
@@ -43,4 +40,3 @@ func (h *QuickReturnDetector) Build() Message {
         name:   'quickreturn',
         Payload:    h.currentPage,
     }
-}
